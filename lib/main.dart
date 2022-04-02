@@ -8,7 +8,7 @@ import 'package:projetclassb2b/dashboard.dart';
 import 'package:projetclassb2b/functions/FirestoreHelper.dart';
 import 'package:projetclassb2b/register.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-
   final String title;
 
   @override
@@ -44,8 +42,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   double slider = 5.5;
- late String mail;
- late String password;
+  late String mail;
+  late String password;
 
   void _incrementCounter() {
     setState(() {
@@ -60,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -74,49 +71,41 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.all(20),
           child: bodyPage(),
         ),
-        
       ),
-
     );
   }
-  PopUp(){
-   showDialog(
-       context: context,
-       builder: (context){
-         if(Platform.isIOS){
-           return CupertinoAlertDialog(
-             title: Text("Erreur"),
-             actions: [
-               ElevatedButton(
-                   onPressed: (){
-                     Navigator.pop(context);
-                   },
-                   child: Text("Ok")
-               )
 
-             ],
-           );
-         }
-         else
-           {
-             return AlertDialog(
-               title: Text("Erreur"),
-               actions: [
-                 ElevatedButton(
-                     onPressed: (){
-                       Navigator.pop(context);
-
-                     },
-                     child: Text("Ok")
-                 )
-
-               ],
-             );
-           }
-       }
-   );
+  PopUp() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          if (Platform.isIOS) {
+            return CupertinoAlertDialog(
+              title: Text("Erreur"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Ok"))
+              ],
+            );
+          } else {
+            return AlertDialog(
+              title: Text("Erreur"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Ok"))
+              ],
+            );
+          }
+        });
   }
-  Widget bodyPage(){
+
+  Widget bodyPage() {
     return Column(
       children: [
         //Afficher mon logo
@@ -124,39 +113,35 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 200,
           width: 200,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: NetworkImage("https://voitures.com/wp-content/uploads/2017/06/gt2017-1024x600.jpg"),
-              fit: BoxFit.fill
-            )
-          ),
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: NetworkImage(
+                      "https://voitures.com/wp-content/uploads/2017/06/gt2017-1024x600.jpg"),
+                  fit: BoxFit.fill)),
         ),
         SizedBox(
           height: 10,
         ),
         //Entrer une adresse mail
         TextField(
-          onChanged: (value){
+          onChanged: (value) {
             setState(() {
               mail = value;
             });
           },
           decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            hintText: "Entrer votre mail",
-
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20)
-            )
-          ),
+              filled: true,
+              fillColor: Colors.white,
+              hintText: "Entrer votre mail",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
         ),
         SizedBox(
           height: 10,
         ),
         //Entrer un mot de passe
         TextField(
-          onChanged: (value){
+          onChanged: (value) {
             setState(() {
               password = value;
             });
@@ -166,63 +151,51 @@ class _MyHomePageState extends State<MyHomePage> {
               filled: true,
               fillColor: Colors.white,
               hintText: "Entrer votre mot de passe",
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20)
-              )
-          ),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
         ),
         SizedBox(
           height: 10,
         ),
-        
+
         // Cliquer sur le bouton connexion
         ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-          ),
-            onPressed: (){
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20))),
+            onPressed: () {
               print("Je me suis connecté");
-              FirestoreHelper().Connexion(mail, password).then((value){
+              FirestoreHelper().Connexion(mail, password).then((value) {
                 print("Connexion réussi");
 
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context){
-                      return dashboard();
-                    }
-                ));
-
-              }).catchError((onError){
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return dashboard();
+                }));
+              }).catchError((onError) {
                 print("Connexion erroné");
                 PopUp();
               });
             },
-            child: Text("Connexion")
-        ),
+            child: Text("Connexion")),
         SizedBox(
           height: 10,
         ),
-        
-        
+
         //Cliquer sur un lien qui envoie sur l'inscription
         InkWell(
-          child: Text("Inscription",style: TextStyle(color: Colors.blue),),
-          onTap: (){
+          child: Text(
+            "Inscription",
+            style: TextStyle(color: Colors.blue),
+          ),
+          onTap: () {
             print("J'ai tappé une fois");
-            Navigator.push(context, MaterialPageRoute(
-                builder: (BuildContext context){
-                  return register();
-                }
-            ));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) {
+              return register();
+            }));
           },
-
         ),
-
       ],
     );
-
-
   }
 }
-
-
-
