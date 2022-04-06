@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Utilisateur {
@@ -7,7 +9,7 @@ class Utilisateur {
   //String nom = "";
   String pseudo = "";
   String mail = "";
-  String? telephone;
+  List friends = [];
   bool isConnected = false;
   DateTime birthDay = DateTime.now();
 
@@ -18,8 +20,7 @@ class Utilisateur {
     //nom = map["NOM"];
     pseudo = map["username"];
     mail = map["mail"];
-    telephone = map["TELEPHONE"];
-    avatar = map["AVATAR"];
+    friends = map["friends"];
   }
 
   Utilisateur.vide();

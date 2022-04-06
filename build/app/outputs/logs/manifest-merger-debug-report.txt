@@ -45,6 +45,7 @@ INJECTED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/m
 INJECTED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/main/AndroidManifest.xml:1:1-37:12
 INJECTED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/main/AndroidManifest.xml:1:1-37:12
 MERGED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/main/AndroidManifest.xml:1:1-37:12
+MERGED from [:shared_preferences_android] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_auth] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_storage] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
@@ -127,6 +128,8 @@ uses-sdk
 INJECTED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/android/app/src/main/AndroidManifest.xml
+MERGED from [:shared_preferences_android] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/shared_preferences_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] /Users/narcos/Documents/Ynov/DEVMOBILE/devmobile/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44

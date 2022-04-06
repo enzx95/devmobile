@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,8 +9,9 @@ import 'package:projetclassb2b/Model/Utilisateur.dart';
 class FirestoreHelper {
   //Attributs
   final auth = FirebaseAuth.instance;
-  final fire_user = FirebaseFirestore.instance.collection("users");
   final fireStorage = FirebaseStorage.instance;
+  final fire_user = FirebaseFirestore.instance.collection("users");
+  final fire_chat = FirebaseFirestore.instance.collection("ChatRoom");
 
   //Constructeur
 
@@ -28,7 +30,11 @@ class FirestoreHelper {
     User? user = resultat.user;
     String uid = user!.uid;
 
-    Map<String, dynamic> map = {"username": pseudo, "mail": mail};
+    Map<String, dynamic> map = {
+      "username": pseudo,
+      "mail": mail,
+      "friends": []
+    };
     addUser(uid, map);
   }
 
@@ -69,5 +75,77 @@ class FirestoreHelper {
   Future<bool> usernameCheck(String username) async {
     final result = await fire_user.where('username', isEqualTo: username).get();
     return result.docs.isEmpty;
+  }
+
+  // Future addChatRoom(chatRoom, chatRoomId) {
+  //   return fire_chat.doc(chatRoomId).set(chatRoom).catchError((e) {
+  //     print(e);
+  //   });
+  // }
+
+  // getChats(String chatRoomId) async {
+  //   return fire_chat
+  //       .doc(chatRoomId)
+  //       .collection("chats")
+  //       .orderBy('time')
+  //       .snapshots();
+  // }
+
+  // Future<void> addMessage(String chatRoomId, chatMessageData) {
+  //   return fire_chat
+  //       .doc(chatRoomId)
+  //       .collection("chats")
+  //       .add(chatMessageData)
+  //       .catchError((e) {
+  //     print(e.toString());
+  //   });
+  // }
+
+  // getUserChats(String itIsMyName) async {
+  //   return await fire_chat
+  //       .where('users', arrayContains: itIsMyName)
+  //       .snapshots();
+  // }
+
+  addFriend(String friendUid) async {
+    fire_user.doc(auth.currentUser!.uid).update({
+      'friends': FieldValue.arrayUnion([friendUid])
+    });
+  }
+
+  removeFriend(String friendUid) async {
+    fire_user.doc(auth.currentUser!.uid).update({
+      'friends': FieldValue.arrayRemove([friendUid])
+    });
+  }
+
+  Future<bool> isFriendCheck(String friendUid) async {
+    final result =
+        await fire_user.where('friends', arrayContains: friendUid).get();
+    return result.docs.isNotEmpty;
+  }
+
+  Future<String> getIdByUsername(String username) async {
+    Future<String> uid;
+    // Query queryUsername = fire_user.where('username', isEqualTo: username);
+    // queryUsername.get().then((QuerySnapshot querySnapshot) {
+    //   querySnapshot.docs.forEach((doc) {
+    //     print(doc.id);
+    //     'doc.id';
+    //   });
+    // });
+    // return uid;
+    // get a new reference for a document in the medicine collection
+    QuerySnapshot querySnap = await FirebaseFirestore.instance
+        .collection('users')
+        .where('username', isEqualTo: username)
+        .get();
+
+    if (querySnap.docs.isEmpty) {
+      return '';
+    }
+    QueryDocumentSnapshot doc = querySnap.docs[
+        0]; // Assumption: the query returns only one document, THE doc you are looking for.
+    return doc.id;
   }
 }

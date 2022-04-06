@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:projetclassb2b/Model/Utilisateur.dart';
 import 'package:projetclassb2b/dashboard.dart';
 import 'package:projetclassb2b/functions/FirestoreHelper.dart';
+import 'package:projetclassb2b/homepage.dart';
+import 'package:projetclassb2b/main2.dart';
 import 'package:projetclassb2b/register.dart';
+
+import 'dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         //Afficher mon logo
         Container(
-          height: 200,
-          width: 200,
+          height: 150,
+          width: 150,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
@@ -169,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 print("Connexion réussi");
 
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return dashboard();
+                  return App();
                 }));
               }).catchError((onError) {
                 print("Connexion erroné");

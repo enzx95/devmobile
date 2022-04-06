@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projetclassb2b/dashboard.dart';
+
 import 'package:projetclassb2b/functions/FirestoreHelper.dart';
+
+import 'package:projetclassb2b/main2.dart';
 
 class register extends StatefulWidget {
   @override
@@ -144,7 +146,7 @@ class registerState extends State<register> {
                 popupMsg = "Inscription terminée";
                 PopUp();
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return dashboard();
+                  return App();
                 }));
               }).catchError((onError) {
                 print("Inscription erroné");
